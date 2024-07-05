@@ -109,8 +109,8 @@ const datemanipulation = function (date1, date2) {
     const differenceindays = Math.ceil((date2 - date1) / (1000 * 60 * 60 * 24));
     const isEarlier = date1 < date2;
     const formatedDates = [date1, date2].map(date => {
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString();
+        const day = date.getDate().toString());
         const year = date.getFullYear();
         return `${month}/${day}/${year}`;
     });
