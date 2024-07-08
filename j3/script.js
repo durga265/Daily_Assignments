@@ -110,7 +110,11 @@ const datemanipulation = function (date1, date2) {
     const isEarlier = date1 < date2;
     const formatedDates = [date1, date2].map(date => {
         const month = (date.getMonth() + 1).toString();
+<<<<<<< HEAD
         const day = date.getDate().toString());
+=======
+        const day = date.getDate().toString();
+>>>>>>> bee82c6 (Daily-Assignments)
         const year = date.getFullYear();
         return `${month}/${day}/${year}`;
     });
