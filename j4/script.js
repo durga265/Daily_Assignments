@@ -26,13 +26,14 @@ nestedElement.querySelector(".nestedElement").style.fontStyle = 'italic';
 
 //5.. Select Elements by Query Selector All
 const span = document.querySelectorAll('span')
-span.forEach(span => span.style.margin = '50px')
+span.forEach(function(value){
+    value.style.margin="30px"
+})
 
 //6.Change Styles of Selected Elements 
 
 const favorite = document.getElementById('favorite');
 
-// Apply styles to the selected element
 favorite.style.backgroundColor = 'yellow';
 favorite.style.textAlign = 'center';
 favorite.style.fontSize = '28px';
