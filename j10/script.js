@@ -1,68 +1,68 @@
+
+
+
+
 document.getElementById('registrationForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    // console.log("you clicked on submit");
-
-    // if(validemail && validusername && validphone &&validpassword){
-    //     console.log('phone,email,password and username are valid. Submitting the form')
-    // }
-    // else{
-    //     console.log('one of phone,email,password or users are not valid. Hence not submitting the form.please correct the errors and try again')
-    // }
-
 
     // Clear previous errors
     document.getElementById("usernameError").textContent = "";
     document.getElementById("emailError").textContent = "";
     document.getElementById("passwordError").textContent = "";
-    document.getElementById("confirmpasswordError").textContent = "";
+    document.getElementById("confirmPasswordError").textContent = "";
     document.getElementById("phoneError").textContent = "";
 
     // Get form values
-    const name = document.getElementById('#name').value;
-    const email = document.getElementById('#email').value;
-    const password = document.getElementById('#password').value;
-    const confirmPassword = document.getElementById('#confirmPassword').value;
-    const phone = document.getElementById('phone').value;
+    const namev = document.getElementById('username').value;
+    const emailv = document.getElementById('email').value;
+    const passwordv = document.getElementById('password').value;
+    const confirmPasswordv = document.getElementById('confirmPassword').value;
+    const phonev = document.getElementById('phone').value;
 
     // Validation patterns
-    const username = /^[a-zA-Z0-9_]{3,}$/
-    const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const usernamePattern = /^[a-zA-Z0-9_]{3,}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    const phonePattern = /^\d{10}$/;
 
-    const passwordpattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/
-    const phonepattern = /^\d{1,10}$/
+    let isValid = true;
 
-    let isvalid = true;
-
-    // Name validation
-    if (username.test(name)) {
-        document.getElementById('nameError').textContent = `Name must contain only letters ${name}`;
-        isvalid = false;
+    // Username validation
+    if (!usernamePattern.test(namev)) {
+        document.getElementById('usernameError').textContent = "Username must contain only letters, numbers, and underscores and be at least 3 characters long.";
+        document.getElementById('usernameError').style.display = "block";
+        isValid = false;
     }
 
     // Email validation
-    if (emailpattern.test(email)) {
-        document.getElementById('emailError').textContent = `Invalid email format ${email}`;
-        isvalid = false;
+    if (!emailPattern.test(emailv)) {
+        document.getElementById('emailError').textContent = "Invalid email format.";
+        document.getElementById('emailError').style.display = "block";
+        isValid = false;
     }
+
     // Password validation
-    if (passwordpattern.length < 8) {
-        document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long.';
-        isvalid = false;
+    if (!passwordPattern.test(passwordv)) {
+        document.getElementById('passwordError').textContent = "Password must be at least 6 characters long, contain at least one number, one lowercase and one uppercase letter.";
+        document.getElementById('passwordError').style.display = "block";
+        isValid = false;
     }
 
     // Confirm Password validation
-    if (password !== confirmPassword) {
-        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-        isvalid = false;
+    if (passwordv !== confirmPasswordv) {
+        document.getElementById('confirmPasswordError').textContent = "Passwords do not match.";
+        document.getElementById('confirmPasswordError').style.display = "block";
+        isValid = false;
     }
 
     // Phone validation
-    if (!phonepattern.test(phone)) {
-        document.getElementById('phoneError').textContent = 'Phone number must be 10 digits.';
-        isvalid = false;
+    if (!phonePattern.test(phonev)) {
+        document.getElementById('phoneError').textContent = "Phone number must be 10 digits.";
+        document.getElementById('phoneError').style.display = "block";
+        isValid = false;
     }
-    if (isvalid) {
-        alert("successfully registered")
+
+    if (isValid) {
+        alert("Successfully registered");
     }
 });
-
